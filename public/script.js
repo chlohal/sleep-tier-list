@@ -73,9 +73,9 @@ function createNextBracketRound(buttonA, buttonB, index) {
 }
 
 function displayResults() {
-    submitResults();
     var prevWinners = [];
     var results = document.createElement("ol");
+    var resultData = {};
     results.classList.add("results");
 
     var levelNames = ["Contestants", "Semi-Semi-Finalists", "Semi-Finalists", "Finalists", "Runner-Up", "Winner"]
@@ -101,7 +101,8 @@ function displayResults() {
                 var member = round.members[h];
                 if(prevWinners.indexOf(member) == -1) {
                     added++;
-                    prevWinners.push(member)
+                    prevWinners.push(member);
+                    resultData[member.name] = j;
                     var card = createWinnerCard(member, round.level);
                     var cardLiParent = document.createElement("li");
 
@@ -114,6 +115,8 @@ function displayResults() {
             if(added) continue;
         }
     }
+
+    submitResults(resultData);
 
     document.body.classList.add("results");
     clearChildren(document.body);
@@ -130,7 +133,7 @@ function createResultsControls() {
 
     viewPublic.textContent = "View Global Results";
     viewPublic.href = "#global";
-    viewPublic.onclick = displayPublicResults();
+    viewPublic.onclick = displayPublicResults;
 
     parent.classList.add("results-controls");
 
@@ -140,12 +143,89 @@ function createResultsControls() {
     return parent;
 }
 
-function submitResults() {
+function submitResults(resultData) {
+    console.log(resultData);
+    var xhr = new XMLHttpRequest();
 
+    xhr.open("POST", "/api/submit");
+
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(JSON.stringify(resultData));
 }
 
 function displayPublicResults() {
+    var modal = document.createElement("dialog");
+    modal.onclick = function(event) {
+        console.log(event);
+        if(event.target != modal) return;
+        if(modal.parentElement) {
+            modal.parentElement.classList.remove("has-modal");
+            modal.parentElement.removeChild(modal);
+        }
+    }
+    modal.setAttribute("open", "true");
 
+    var modalInner = document.createElement("div");
+    modalInner.onclick = function(event) {
+        event.stopPropagation();
+    }
+    modal.appendChild(modalInner);
+
+    var header = document.createElement("h2");
+    header.textContent = "Global Results";
+    modalInner.appendChild(header);
+
+    var table = document.createElement("table");
+
+    getPublicResults(function(data) {
+        var dataEntries = Object.entries(data);
+
+        var max = 0;
+        for(var i = 0; i < dataEntries.length; i++) max = Math.max(max, dataEntries[i][1]);
+
+        dataEntries = dataEntries.sort(function(a, b) { return b[1] - a[1]; })
+
+        for(var i = 0; i < dataEntries.length; i++) {
+            var tr = document.createElement("tr");
+
+            var name = document.createElement("th");
+            name.textContent = dataEntries[i][0];
+
+            var data = document.createElement("td");
+            var dataNum = document.createElement("span");
+            dataNum.textContent = dataEntries[i][1];
+
+            var dataGraph = document.createElement("b");
+            dataGraph.setAttribute("aria-hidden", "true");
+            dataGraph.style.width =  (dataEntries[i][1] / max * 100) + "%";
+
+            data.appendChild(dataNum);
+            data.appendChild(dataGraph);
+
+            tr.appendChild(name);
+            tr.appendChild(data);
+
+            table.appendChild(tr);
+        }
+
+        modalInner.appendChild(table);
+    });
+
+    document.body.classList.add("has-modal");
+    document.body.appendChild(modal);
+}
+
+function getPublicResults(cb) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/api/get-global");
+
+    xhr.onload = function() {
+        cb(JSON.parse(xhr.responseText));
+    } 
+
+    xhr.send();
 }
 
 function createWinnerCard(michael, level) {
