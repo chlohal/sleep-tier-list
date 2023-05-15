@@ -4,28 +4,19 @@
             "dorm_room", "dorm_common_room", "library", "outside", "class", "camping", "minivan", "sedan", "friends_house", "your_house", "dungeon"
         ],
         "what_sleeping_on": [
-            "familiar_bed", "guest_bed", "grass", "dog_bed", "car_seat", "car_bench", "car_trunk", "recliner", "rug", "carpet_long", "carpet_short", "beanbag", "couch_leather", "couch_fabric", "hardwood", "pavement", "stairs", "hammock", "futon", "yoga_mat", "bench", "chair"
+            "familiar_bed", "guest_bed", "grass", "dog_bed", "car_seat", "car_trunk", "recliner", "rug", "beanbag", "couch", "hardwood", "pavement", "stairs", "hammock", "bench", "chair"
         ],
         "who_sleeping_with": [
-            "close_friend", "romantic_partner", "parent", "sibling", "non_close_friend", "animal", "stuffed_animal"
+            "friend", "romantic_partner", "parent", "sibling", "animal", "stuffed_animal"
         ],
         "how_sleeping_with_person": [
             "same_bed", "same_room", "cuddling", "on_top_of", "on_bottom_of"
         ],
         "temperature": [
             "hot", "warm", "cool", "cold"
-        ], 
-        "noise_level": [
-            "uproar", "loud", "quiet", "silent"
-        ],
-        "light": [
-            "incandescent", "bright", "moody", "dark", "pitch_black"
         ],
         "sleep_type": [
-            "nap", "cuddling", "long_nap", "long_sleep", "short_rest"
-        ],
-        "items": [
-            "fan", "blanket", "pillow"
+            "nap", "resting", "long_nap", "long_sleep"
         ]
     }
 }
