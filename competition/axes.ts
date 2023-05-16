@@ -71,25 +71,36 @@ const axis_bit_points: Record<keyof typeof axes.axes, number> = {
     sleep_type: 0
 } as const;
 
-export function random_with_axes(specific_axes: (keyof typeof axes.axes)[]): AxisPoint {
-    let id = 0;
+export function random_pair_with_axes(specific_axes: (keyof typeof axes.axes)[]): [AxisPoint, AxisPoint] {
+    let id_a = 0, id_b = 0;
+
+    const dimensions_a: { axis: axis_shortname, value: string }[] = [], dimensions_b: typeof dimensions_a = []
 
     const axis_point = specific_axes.map(x => {
         const values = axes.axes[x];
-        const index = randomIndex(values);
+        const [index_a, index_b] = shuffle(values.map((x,i)=>i));
 
-        id |= ((index + 1) << axis_bit_points[x]);
+        id_a |= ((index_a + 1) << axis_bit_points[x]);
+        id_b |= ((index_b + 1) << axis_bit_points[x]);
 
-        return {
+        dimensions_a.push({
             axis: shortnames[x],
-            value: axes.axes[x][index]
-        }
+            value: axes.axes[x][index_a]
+        });
+
+        dimensions_b.push({
+            axis: shortnames[x],
+            value: axes.axes[x][index_b]
+        });
     });
 
-    return {
-        dimensions: axis_point,
-        id: id
-    };
+    return [{
+        dimensions: dimensions_a,
+        id: id_a
+    }, {
+        dimensions: dimensions_b,
+        id: id_b
+    }];
 }
 
 export type where_opt = typeof axes.axes.where_sleeping[number];

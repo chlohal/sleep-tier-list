@@ -2,6 +2,8 @@ window.addEventListener("load", onload);
 
 const QUEUE_SIZE = 10;
 
+let NUM_CONTESTS = 0;
+
 const contestQueue = [];
 let aButton, bButton, shadow, main;
 
@@ -94,7 +96,7 @@ function startContest() {
 function loadContest(cb) {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "/api/get-contest");
+    xhr.open("GET", "/api/get-contest?iter=" + (NUM_CONTESTS++));
 
     xhr.onload = function() {
         cb(JSON.parse(xhr.responseText));

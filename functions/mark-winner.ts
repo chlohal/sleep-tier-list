@@ -1,5 +1,4 @@
-//@ts-nocheck
-
+import { NUM_RANDOM_ID_CHARS } from "../competition";
 import { NetlifyEvent, NetlifyCallback, NetlifyContext } from "./.types";
 
 //@ts-ignore
@@ -43,12 +42,13 @@ exports.handler = function (event: NetlifyEvent, context: NetlifyContext, callba
 
     const sendBody = "+1";
 
+    //@ts-ignore
     var https = require("https");
 
     const options = {
         hostname: "kvdb.io",
         path: `/5ECkmP5qaKfsoTsesTETpZ/${encodeURIComponent(winner)}`,
-        method: 'PATCH',
+        method: 'PATCH', //@ts-ignore
         headers: { 'Content-Length': Buffer.byteLength(sendBody) },
     }
 
