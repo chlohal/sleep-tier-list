@@ -44,12 +44,12 @@ export function phrase(axisPicks: AxisPoint): string {
 }
 
 function sleepVerb(type: sleep_opt | undefined): string {
+    if(type === undefined) return "";
+
     switch(type) {
         case "nap": return "Napping";
         case "resting": return "Lying down and resting";
-        case "long_nap": return "Taking an hour-long nap";
         case "long_sleep": return "Sleeping a full night";
-        default: return "Sleeping";
     }
 }
 function tempAdj(temp: temp_opt | undefined): string {
@@ -57,8 +57,7 @@ function tempAdj(temp: temp_opt | undefined): string {
 
     switch(temp) {
         case "hot": return "overheated";
-        case "cold": return "freezing";
-        case "cool": return "cool";
+        case "cold": return "frigid";
         case "warm": return "warm";
     }
 }

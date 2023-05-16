@@ -3,19 +3,19 @@ import { randomFrom, shuffle, randomIndex, bitsRequired, selBits } from "../phra
 const axes = {
     "axes": {
         "where_sleeping": [
-            "dorm_room", "dorm_common_room", "library", "outside", "class", "camping", "minivan", "sedan", "house", "dungeon"
+            "dorm", "library", "outside", "camping", "car", "house"
         ],
         "what_sleeping_on": [
-            "bed", "grass", "dog_bed", "car_seat", "recliner", "rug", "beanbag", "couch", "hardwood", "pavement", "hammock", "bench", "chair"
+            "bed", "grass", "dog_bed", "rug", "couch", "hardwood", "pavement", "chair"
         ],
         "who_sleeping_with": [
             "friend", "romantic_partner", "family_member", "animal", "stuffed_animal", "someone"
         ],
         "temperature": [
-            "hot", "warm", "cool", "cold"
+            "hot", "warm", "cold"
         ],
         "sleep_type": [
-            "nap", "resting", "long_nap", "long_sleep"
+            "nap", "resting", "long_sleep"
         ]
     }
 } as const

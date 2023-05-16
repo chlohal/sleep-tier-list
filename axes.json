@@ -1,22 +1,19 @@
 {
     "axes": {
         "where_sleeping": [
-            "dorm_room", "dorm_common_room", "library", "outside", "class", "camping", "minivan", "sedan", "friends_house", "your_house", "dungeon"
+            "dorm", "library", "outside", "camping", "car", "house"
         ],
         "what_sleeping_on": [
-            "familiar_bed", "guest_bed", "grass", "dog_bed", "car_seat", "car_trunk", "recliner", "rug", "beanbag", "couch", "hardwood", "pavement", "stairs", "hammock", "bench", "chair"
+            "bed", "grass", "dog_bed", "rug", "couch", "hardwood", "pavement", "chair"
         ],
         "who_sleeping_with": [
-            "friend", "romantic_partner", "parent", "sibling", "animal", "stuffed_animal"
-        ],
-        "how_sleeping_with_person": [
-            "same_bed", "same_room", "cuddling", "on_top_of", "on_bottom_of"
+            "friend", "romantic_partner", "family_member", "animal", "stuffed_animal", "someone"
         ],
         "temperature": [
-            "hot", "warm", "cool", "cold"
+            "hot", "warm", "cold"
         ],
         "sleep_type": [
-            "nap", "resting", "long_nap", "long_sleep"
+            "nap", "resting", "long_sleep"
         ]
     }
 }

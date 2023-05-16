@@ -61,18 +61,13 @@ export function literalOfWhat(what: what_opt | undefined): string {
     if(what === undefined) return "";
 
     switch(what) {
-        case "beanbag": return "beanbag";
         case "bed": return "bed";
-        case "bench": return "bench";
-        case "car_seat": return "car seat";
         case "chair": return "chair";
         case "couch": return "couch";
         case "dog_bed": return "dog bed";
         case "grass": return "patch of grass";
-        case "hammock": return "hammock";
         case "hardwood": return "hardwood flooring";
         case "pavement": return "pavement";
-        case "recliner": return "recliner";
         case "rug": return "rug";
     }
     
@@ -82,16 +77,12 @@ export function literalOfWhere(where: where_opt | undefined): string {
     if (where === undefined) return "";
 
     switch (where) {
-        case "dorm_room": return "dorm room";
-        case "dorm_common_room": return "common room";
+        case "dorm": return "college dorm room";
         case "library": return "library";
         case "outside": return "location outside";
-        case "class": return "classroom";
         case "camping": return "tent";
-        case "minivan": return "minivan";
-        case "sedan": return "sedan";
+        case "car": return "car";
         case "house": return "house";
-        case "dungeon": return "dungeon";
     }
 }
 function prepositionForWhat(what: what_opt | undefined): string {
