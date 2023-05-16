@@ -41,11 +41,11 @@ function activateQueuedContest(queuedContest) {
 
 function addToQueue(cb) {
     loadContest((contest) => {
-        let contestAButton = document.createElement("img");
-        let contestBButton = document.createElement("img");
+        let contestAButton = document.createElement("div");
+        let contestBButton = document.createElement("div");
 
-        contestAButton.src = contest.contestantOne.image;
-        contestBButton.src = contest.contestantTwo.image;
+        contestAButton.textContent = contest.a.text
+        contestBButton.textContent = contest.b.text;
 
         shadow.appendChild(contestAButton);
         shadow.appendChild(contestBButton);
@@ -77,12 +77,12 @@ function startContest() {
         }
 
         function aListen() {
-            increaseHotness(contest.id, contest.contestantOne.name);
+            awardPoint(contest.id, contest.a.id);
             newContest();
             
         }
         function bListen() {
-            increaseHotness(contest.id, contest.contestantTwo.name);
+            awardPoint(contest.id, contest.b.id);
             newContest();
         }
 
@@ -103,7 +103,7 @@ function loadContest(cb) {
     xhr.send()
 }
 
-function increaseHotness(contestId, personName) {
+function awardPoint(contestId, personName) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", `/api/mark-winner`);
 

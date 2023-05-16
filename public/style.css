@@ -15,6 +15,10 @@ main {
 }
 
 .selector {
+    
+    background: #000;
+    background: radial-gradient(circle, hsla(240, 39%, 21%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
+
     flex-grow: 1;
     display: flex;
     max-width: 100vw;
@@ -23,7 +27,10 @@ main {
     border: 0;
     margin: 0;
     padding: 0;
-    background: #000;
+    color: #fff;
+    letter-spacing: 0.125ch;
+
+    font-family: inherit;
 
     background-size: cover;
 
@@ -49,7 +56,7 @@ main {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     align-items: center;
@@ -61,10 +68,13 @@ main {
     border: 0;
 }
 
+body {
+    font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+}
+
 #intro div {
     background: #f7f7f7;
     color: #111;
-    font-family: 'Courier New', Courier, monospace;
     text-align: center;
 
     width: max-content;
@@ -94,6 +104,7 @@ kbd {
 
 #intro p {
     line-height: 1.6;
+    margin: 0 0.5em;
 }
 
 #shadow {
@@ -101,5 +112,9 @@ kbd {
     display: flex;
     top: 1000vh;
     width: max-content;
-    height: 100vh;
+    height: 100%;
+}
+
+:root {
+    height: 100%;
 }
