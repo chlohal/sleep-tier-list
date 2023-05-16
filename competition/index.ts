@@ -19,7 +19,11 @@ export function generate_new_competition(nth_competition: number): PublicCompeti
     const axes = random_axes(num_axes);
     
     const a = random_with_axes(axes);
-    const b = random_with_axes(axes);
+    let b: typeof a;
+
+    do {
+        b = random_with_axes(axes);
+    } while(a.id == b.id);
 
     const competition_id = Date.now().toString(36) + randDigt(NUM_RANDOM_ID_CHARS);
 
