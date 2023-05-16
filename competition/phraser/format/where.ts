@@ -79,7 +79,7 @@ export function literalOfWhere(where: where_opt | undefined): string {
     if (where === undefined) return "";
 
     switch (where) {
-        case "dorm": return "college dorm room";
+        case "dorm": return "dorm room";
         case "library": return "library";
         case "outside": return "location outside";
         case "camping": return "tent";
