@@ -27,7 +27,6 @@ export function literalOfWho(who: who_opt | undefined): string {
         case "family_member": return "a family member";
         case "romantic_partner": return "a romantic partner";
         case "stuffed_animal": return "a stuffed animal";
-        case "someone": return "someone";
     }
 
 }

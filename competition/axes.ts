@@ -9,7 +9,7 @@ const axes = {
             "bed", "grass", "dog_bed", "rug", "couch", "hardwood", "pavement", "chair"
         ],
         "who_sleeping_with": [
-            "friend", "romantic_partner", "family_member", "animal", "stuffed_animal", "someone"
+            "friend", "romantic_partner", "family_member", "animal", "stuffed_animal"
         ],
         "temperature": [
             "hot", "warm", "cold"
