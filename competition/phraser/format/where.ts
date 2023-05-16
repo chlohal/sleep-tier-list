@@ -69,6 +69,8 @@ export function literalOfWhat(what: what_opt | undefined): string {
         case "hardwood": return "hardwood flooring";
         case "pavement": return "pavement";
         case "rug": return "rug";
+        case "hammock": return "hammock";
+        case "stairs": return "staircase";
     }
     
 }

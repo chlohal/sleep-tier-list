@@ -6,7 +6,7 @@ const axes = {
             "dorm", "library", "outside", "camping", "car", "house"
         ],
         "what_sleeping_on": [
-            "bed", "grass", "dog_bed", "rug", "couch", "hardwood", "pavement", "chair"
+            "bed", "grass", "dog_bed", "rug", "couch", "hardwood", "pavement", "chair", "stairs", "hammock"
         ],
         "who_sleeping_with": [
             "friend", "romantic_partner", "family_member", "animal", "stuffed_animal"
