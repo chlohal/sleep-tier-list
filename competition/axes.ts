@@ -1,4 +1,4 @@
-import { randomFrom, shuffle, randomIndex, bitsRequired, selBits } from "../phraser/util";
+import { randomFrom, shuffle, randomIndex, bitsRequired, selBits } from "./phraser/util";
 
 const axes = {
     "axes": {
@@ -69,7 +69,7 @@ const axis_bit_points: Record<keyof typeof axes.axes, number> = {
     who_sleeping_with: bitsRequired(axes.axes.temperature) + bitsRequired(axes.axes.sleep_type) + 2,
     temperature: bitsRequired(axes.axes.sleep_type) + 1,
     sleep_type: 0
-} as const
+} as const;
 
 export function random_with_axes(specific_axes: (keyof typeof axes.axes)[]): AxisPoint {
     let id = 0;

@@ -1,4 +1,4 @@
-import { what_opt, where_opt } from "../../competition/axes";
+import { what_opt, where_opt } from "../../axes";
 import { GrammarType, SentenceFragment } from "../sentence";
 
 export function makeWhereQuality(what: what_opt | undefined): SentenceFragment {

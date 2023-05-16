@@ -1,4 +1,4 @@
-import { who_opt } from "../../competition/axes";
+import { who_opt } from "../../axes";
 import { SentenceFragment } from "../sentence";
 
 export function makeWhoQuality(): SentenceFragment {

@@ -1,4 +1,4 @@
-import { sleep_opt, temp_opt, what_opt, where_opt, who_opt, AxisPoint } from "../competition/axes";
+import { sleep_opt, temp_opt, what_opt, where_opt, who_opt, AxisPoint } from "../axes";
 import { literalOfWhat, literalOfWhere, makeWhereQuality } from "./format/where";
 import { literalOfWho, makeWhoQuality } from "./format/who";
 import { SentenceFragment, formatSentence, replacePlaceholder, startSentenceWithVerbLy } from "./sentence";
