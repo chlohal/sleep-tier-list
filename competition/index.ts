@@ -1,20 +1,18 @@
 import { AxisPoint, point_from_id, random_axes, random_with_axes } from "./axes";
 import { phrase } from "./phraser";
-type Competition = {
-    competitor_a: AxisPoint,
-    competitor_b: AxisPoint,
-    id: string
-}
-
 type PublicCompetition = {
-    a: string,
-    b: string,
+    a: {
+        text: string,
+        id: number
+    }
+    b: {
+        text: string,
+        id: number
+    },
     id: string
 }
 
-export function record_competition_results() {
-
-}
+export const NUM_RANDOM_ID_CHARS = 3;
 
 export function generate_new_competition(nth_competition: number): PublicCompetition {
     const num_axes = Math.floor(Math.log((nth_competition / Math.E) + Math.E) + 1);
@@ -23,9 +21,23 @@ export function generate_new_competition(nth_competition: number): PublicCompeti
     const a = random_with_axes(axes);
     const b = random_with_axes(axes);
 
+    const competition_id = Date.now().toString(36) + randDigt(NUM_RANDOM_ID_CHARS);
+
     return {
-        a: phrase(a),
-        b: phrase(b),
-        id: a.id.toString(16) + ":" + b.id.toString(16)
+        a: {
+            text: phrase(a),
+            id: a.id
+        },
+        b: {
+            text: phrase(b),
+            id: b.id
+        },
+        id: competition_id
     }
+}
+
+function randDigt(num: number) {
+    let r = "";
+    for(var i = 0; i < num; i++) r += Math.floor(Math.random() * 36).toString(36);
+    return r;
 }
