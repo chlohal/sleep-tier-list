@@ -44,7 +44,7 @@ export function phrase(axisPicks: AxisPoint): string {
 }
 
 function sleepVerb(type: sleep_opt | undefined): string {
-    if(type === undefined) return "";
+    if(type === undefined) return "Sleeping";
 
     switch(type) {
         case "nap": return "Napping";
