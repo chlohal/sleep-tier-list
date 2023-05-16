@@ -15,7 +15,7 @@ type PublicCompetition = {
 export const NUM_RANDOM_ID_CHARS = 3;
 
 export function generate_new_competition(nth_competition: number): PublicCompetition {
-    const num_axes = Math.floor(Math.log((nth_competition / Math.E) + Math.E) + 1);
+    const num_axes = Math.floor(Math.log(Math.E * (nth_competition + 1) + 1));
     const axes = random_axes(num_axes);
     
     const a = random_with_axes(axes);

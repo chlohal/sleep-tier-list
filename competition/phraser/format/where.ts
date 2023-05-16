@@ -1,7 +1,7 @@
-import { what_opt, where_opt } from "../../axes";
+import { temp_opt, what_opt, where_opt } from "../../axes";
 import { GrammarType, SentenceFragment } from "../sentence";
 
-export function makeWhereQuality(what: what_opt | undefined): SentenceFragment {
+export function makeWhereQuality(what: what_opt | undefined, where: where_opt | undefined, temp: temp_opt | undefined): SentenceFragment {
     return {
         type: "phrase",
         children: [
@@ -24,10 +24,10 @@ export function makeWhereQuality(what: what_opt | undefined): SentenceFragment {
                 }
             },
             {
-                type: "prepositional",
+                type: temp === undefined && where === "outside" ? "phrase" : "prepositional",
                 children: [
                     {
-                        type: "indefinite_article",
+                        type: temp === undefined && where === "outside" ? "phrase" : "indefinite_article",
                         children: [
                             {
                                 type: "adjectival",
@@ -37,7 +37,7 @@ export function makeWhereQuality(what: what_opt | undefined): SentenceFragment {
                                         key: "TEMPERATURE",
                                         part: "adjective"
                                     },
-                                    {
+                                    temp === undefined && where === "outside" ? { type: "literal", content: "outside" } : {
                                         type: "placeholder",
                                         key: "WHERE",
                                         part: "object"

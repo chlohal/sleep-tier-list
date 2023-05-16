@@ -24,7 +24,7 @@ export function phrase(axisPicks: AxisPoint): string {
 
     const sentence = startSentenceWithVerbLy(sleepVerb(picks.type), qualityList);
     
-    qualityList.children.push(makeWhereQuality(picks.what));
+    qualityList.children.push(makeWhereQuality(picks.what, picks.where, picks.temp));
 
     replacePlaceholder(sentence, "TEMPERATURE", tempAdj(picks.temp));
     //If there is a temperature quality, make the place generic. Otherwise, we can safely dissolve the place.
