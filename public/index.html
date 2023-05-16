@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Facemash But For Russian Politicians</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+
+    <script src="data.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <dialog id="intro" open>
+        <div>
+            <h1>Facemash for Russian Politicians</h1>
+            <p>Mark Zuckerburg started Facebook in a dorm room with an app called Facemash. It was centered around men
+                ranking women on attractiveness.</p>
+
+            <p>In 2023, that's not acceptable. <em>However,</em> Russia is currently engaging in an illegal invasion of
+                 Ukraine. Why not rank Russian politicians on attractiveness?</p>
+
+            <button id="go">Sounds Good to Me</button>
+                <small>Click on the hotter politician. You can also use <kbd>1</kbd> or <kbd>2</kbd> on desktop.
+                </small>
+        </div>
+    </dialog>
+    <main>
+        <button id="a-button" class="selector"></button>
+        <button id="b-button" class="selector"></button>
+    </main>
+    <div aria-hidden="true" id="shadow"></div>
+</body>
+
+</html>
