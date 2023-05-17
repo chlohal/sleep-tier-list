@@ -4,7 +4,7 @@ import { article_type, literalOfWhat, literalOfWhere, typeOfWhere } from "./form
 import { literalOfWho } from "./format/who";
 import { SentenceFragment, formatSentence, replacePlaceholder } from "./sentence";
 
-export function phrase(axisPicks: AxisPoint): string {
+export function phrase(axisPicks: AxisPoint, doHtml = true): string {
     const picks: { -readonly [P in keyof typeof axes]: (typeof axes[P][number]) | undefined; } = {
         where: undefined,
         what: undefined,
@@ -34,7 +34,7 @@ export function phrase(axisPicks: AxisPoint): string {
 
     replacePlaceholder(sentence, "WHO", literalOfWho(picks.who));
 
-    return formatSentence(sentence)
+    return formatSentence(sentence, doHtml)
 }
 
 function sleepVerb(type: opt<'type'> | undefined): SentenceFragment[] {
@@ -77,7 +77,7 @@ function literalOfLight(light: opt<'light'> | undefined): string {
         case "bright": return "well-lit";
         case "dark": return "dark";
         case "moody": return "dim";
-        case "incandescent": return "luminous";
+        case "incandescent": return "brightly lit";
         case "pitch_black": return "pitch-black";
     }
 }

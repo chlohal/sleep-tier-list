@@ -78,8 +78,8 @@ function normalizeSentence(sentence: SentenceFragment, parent?: SentencePart): v
 
     switch (sentence.type) {
         case "adjectival":
-            const objects = sentence.children.filter(x => x.type != "dummy_object" && TREATED_AS_OBJECT_IN_ADJECTIVAL.includes(x.type as GrammarType)).length;
-            if (objects > 0) {
+            const adjectives = sentence.children.filter(x => x.type == "adjective").length;
+            if (adjectives == 0) {
                 sentence.children = sentence.children.filter(x=>x.type != "dummy_object");
             }
             if(sentence.children.length == 1 && sentence.children[0].type == "dummy_object") {
@@ -155,9 +155,9 @@ function formatSentencePart(part: SentencePart, doHtml: boolean): string {
             const object = formatNormalizedSentence(part.children[object_index],doHtml);
             const post_adjectives = andJoin(part.children.slice(object_index + 1).map(x=>formatNormalizedSentence(x, doHtml)));
 
-            if(pre_adjectives && object && post_adjectives) return `${pre_adjectives} ${object}, ${post_adjectives}`
+            if(pre_adjectives && object && post_adjectives) return `${pre_adjectives} ${object} ${post_adjectives}`
             else if(pre_adjectives && object) return `${pre_adjectives} ${object}`;
-            else if(post_adjectives && object) return `${object} which is ${post_adjectives}`;
+            else if(post_adjectives && object) return `${object} ${post_adjectives}`;
             else if(object) return object;
             else throw new Error("No object in adjectival!");
         case "comma_deliminated_list":
@@ -196,7 +196,7 @@ function prefixIfDefiniteWith(part: SentencePart, prefix: string | ((child: stri
 
     if (child == "") return "";
 
-    if (typeof prefix === "function") prefix = prefix(child);
+    if (typeof prefix === "function") prefix = prefix(getFirstLiteral(part));
 
     return prefix + " " + child;
 }

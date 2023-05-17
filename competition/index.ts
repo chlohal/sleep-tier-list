@@ -13,6 +13,14 @@ type PublicCompetition = {
     id: string
 }
 
+console.log(phrase({
+    dimensions: [
+        { axis: "light", "value": "dark" },
+        { axis: "where", value: "outside" }
+    ],
+    id: 0 as point_id
+}, false))
+
 export const NUM_RANDOM_ID_CHARS = 3;
 
 export function generate_new_competition(nth_competition: number): PublicCompetition {
