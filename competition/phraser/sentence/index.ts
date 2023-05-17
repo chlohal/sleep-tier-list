@@ -10,7 +10,7 @@ type SentencePart = {
     attributes?: { [k: string]: string }
 }
 
-const TREATED_AS_OBJECT_IN_ADJECTIVAL: GrammarType[] = ["object", "indefinite_object", "dummy_object", "indefinite_particle"]
+const TREATED_AS_OBJECT_IN_ADJECTIVAL: GrammarType[] = ["object", "indefinite_object", "dummy_object"]
 const DISSOLVES_ARTICLES: GrammarType[] = ["indefinite_object", "indefinite_particle"];
 const DISSOLVES_PREPOSITIONS: GrammarType[] = ["indefinite_particle"];
 
@@ -180,6 +180,12 @@ function formatSentencePart(part: SentencePart, doHtml: boolean): string {
         case "dummy_object":
         case "verb": return part.children.map(x=>formatNormalizedSentence(x, doHtml)).filter(x => x).join(" ");
     }
+}
+
+function getFirstLiteral(part: SentenceFragment) {
+    if(part.type === "literal") return part.content;
+    else if(part.type === "placeholder") throw new Error("Unreplaced placeholder!");
+    else return getFirstLiteral(part.children[0]);
 }
 
 function prefixIfDefiniteWith(part: SentencePart, prefix: string | ((child: string) => string), doHtml: boolean) {
