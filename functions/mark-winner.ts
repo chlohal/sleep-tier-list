@@ -1,5 +1,5 @@
 import { NUM_RANDOM_ID_CHARS } from "../competition";
-import { NetlifyEvent, NetlifyCallback, NetlifyContext } from "./.types";
+import { NetlifyEvent, NetlifyCallback, NetlifyContext, setKey } from "./.types";
 
 //@ts-ignore
 exports.handler = function (event: NetlifyEvent, context: NetlifyContext, callback: NetlifyCallback) {
@@ -29,7 +29,7 @@ exports.handler = function (event: NetlifyEvent, context: NetlifyContext, callba
 
     const contest_issue_time = parseInt(bodyJson.id.slice(0, -NUM_RANDOM_ID_CHARS), 36);
     const time_since_issue = Date.now() - contest_issue_time;
-    if(time_since_issue > 300_000 || time_since_issue < 0) {
+    if (time_since_issue > 300_000 || time_since_issue < 0) {
         callback(null, {
             statusCode: 400,
             body: "Expired Contest ID",
@@ -38,36 +38,20 @@ exports.handler = function (event: NetlifyEvent, context: NetlifyContext, callba
         return false;
     }
 
-    const winner = `${bodyJson.winner}`;
-
-    const sendBody = "+1";
-
-    //@ts-ignore
-    var https = require("https");
-
-    const options = {
-        hostname: "kvdb.io",
-        path: `/5ECkmP5qaKfsoTsesTETpZ/${encodeURIComponent(winner)}`,
-        method: 'PATCH', //@ts-ignore
-        headers: { 'Content-Length': Buffer.byteLength(sendBody) },
-    }
-
-    var req = https.request(options, function (res) {
-        callback(null, {
-            statusCode: 201,
-            body: "",
-            headers: { "Content-Type": "application/json" }
+    setKey(`competitions:${bodyJson.id}:winner`, `${bodyJson.winner}`)
+        .then(() => {
+            callback(null, {
+                statusCode: 201,
+                body: "",
+                headers: { "Content-Type": "application/json" }
+            });
+        })
+        .catch((err) => {
+            console.error(err);
+            callback(null, {
+                statusCode: 500,
+                body: "",
+                headers: { "Content-Type": "application/json" }
+            });
         });
-    });
-
-    req.on("error", function (err) {
-        console.log(err);
-        callback(null, {
-            statusCode: 500,
-            body: "",
-            headers: { "Content-Type": "text/plain" }
-        });
-    });
-
-    req.end(sendBody);
 }

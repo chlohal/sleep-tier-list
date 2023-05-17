@@ -26,7 +26,7 @@ main {
 
     border: 0;
     margin: 0;
-    padding: 0;
+    padding: 1em;
     color: #fff;
     letter-spacing: 0.125ch;
 
@@ -39,6 +39,40 @@ main {
 
     overflow: hidden;
     position: relative;
+
+    font-size: 4vmin;
+}
+
+.sentence-key {
+    display: inline;
+}
+
+.sentence-key.TYPE {
+    color: #47E5BC;
+}
+
+.sentence-key.WHAT {
+    color: #e5a647;
+}
+
+.sentence-key.NOISE {
+    color: #5f47e5;
+}
+
+.sentence-key.LIGHT {
+    color: #d5ee65;
+}
+
+.sentence-key.TEMPERATURE {
+    color: #eeb765;
+}
+
+.sentence-key.WHERE {
+    color: #65ee77;
+}
+
+.sentence-key.WHO {
+    color: #d365ee;
 }
 
 .selector img {
@@ -77,9 +111,8 @@ body {
     color: #111;
     text-align: center;
 
-    width: max-content;
-    min-width: 80ch;
-
+    min-width: min-content;
+    width: 80ch;
     max-width: 100vw;
 
     padding: 1em;

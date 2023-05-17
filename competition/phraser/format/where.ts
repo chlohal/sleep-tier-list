@@ -1,69 +1,18 @@
-import { temp_opt, what_opt, where_opt } from "../../axes";
+import { opt } from "../../axes";
 import { GrammarType, SentenceFragment } from "../sentence";
 
-export function makeWhereQuality(what: what_opt | undefined, where: where_opt | undefined, temp: temp_opt | undefined): SentenceFragment {
-    return {
-        type: "phrase",
-        children: [
-            {
-                type: "prepositional",
-                children: [
-                    {
-                        type: article_type(what),
-                        children: [
-                            {
-                                type: "placeholder",
-                                key: "WHAT",
-                                part: "object"
-                            }
-                        ]
-                    }
-                ],
-                attributes: {
-                    preposition: prepositionForWhat(what)
-                }
-            },
-            {
-                type: temp === undefined && where === "outside" ? "phrase" : "prepositional",
-                children: [
-                    {
-                        type: temp === undefined && where === "outside" ? "phrase" : "indefinite_article",
-                        children: [
-                            {
-                                type: "adjectival",
-                                children: [
-                                    {
-                                        type: "placeholder",
-                                        key: "TEMPERATURE",
-                                        part: "adjective"
-                                    },
-                                    temp === undefined && where === "outside" ? { type: "literal", content: "outside" } : {
-                                        type: "placeholder",
-                                        key: "WHERE",
-                                        part: "object"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                attributes: {
-                    preposition: "in"
-                }
-            }
 
-        ]
-    }
+export function literalOfWhat(what: opt<'what'> | undefined): string {
+    if (what === undefined) return "";
 
-}
-
-export function literalOfWhat(what: what_opt | undefined): string {
-    if(what === undefined) return "";
-
-    switch(what) {
-        case "bed": return "bed";
+    switch (what) {
+        case "guest_bed": return "guest bed"
+        case "queen_bed": return "queen-sized bed";
+        case "twin_bed": return "twin-sized bed";
         case "chair": return "chair";
-        case "couch": return "couch";
+        case "beanbag": return "beanbag";
+        case "bench": return "bench";
+        case "car_seat": return "car seat";
         case "dog_bed": return "dog bed";
         case "grass": return "patch of grass";
         case "hardwood": return "hardwood flooring";
@@ -71,31 +20,40 @@ export function literalOfWhat(what: what_opt | undefined): string {
         case "rug": return "rug";
         case "hammock": return "hammock";
         case "stairs": return "staircase";
+        case "couch": return "couch";
+        case "futon": return "futon";
+        case "recliner": return "recliner";
+        case "yoga_mat": return "yoga mat";
     }
-    
+
 }
 
-export function literalOfWhere(where: where_opt | undefined): string {
+export function typeOfWhere(where: opt<'where'> | undefined): GrammarType {
+    if(where === "outside") return "indefinite_particle";
+    else return "object";
+}
+
+export function literalOfWhere(where: opt<'where'> | undefined): string | SentenceFragment {
     if (where === undefined) return "";
 
     switch (where) {
-        case "dorm": return "dorm room";
+        case "dorm_room": return "dorm room";
+        case "dorm_common_room": return "common room";
         case "library": return "library";
-        case "outside": return "location outside";
+        case "outside": return "outside";
         case "camping": return "tent";
-        case "car": return "car";
-        case "house": return "house";
+        case "minivan": return "minivan";
+        case "sedan": return "car";
+        case "class": return "classroom";
+        case "dungeon": return "dungeon";
+        case "your_house": return "home";
+        case "friends_house": return "house";
+
     }
 }
-function prepositionForWhat(what: what_opt | undefined): string {
-    switch("what") {
 
-        default: return "on";
-    }
-}
-
-function article_type(what: what_opt | undefined): GrammarType {
-    if(what == "hardwood" || what == "pavement") return "phrase";
-    else return "indefinite_article"
+export function article_type(what: opt<'what'> | undefined): GrammarType {
+    if (what == "hardwood" || what == "pavement") return "indefinite_object";
+    else return "object"
 }
 

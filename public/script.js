@@ -1,6 +1,6 @@
 window.addEventListener("load", onload);
 
-const QUEUE_SIZE = 10;
+const QUEUE_SIZE = 2;
 
 let NUM_CONTESTS = 0;
 
@@ -46,8 +46,8 @@ function addToQueue(cb) {
         let contestAButton = document.createElement("div");
         let contestBButton = document.createElement("div");
 
-        contestAButton.textContent = contest.a.text
-        contestBButton.textContent = contest.b.text;
+        contestAButton.innerHTML = contest.a.text
+        contestBButton.innerHTML = contest.b.text;
 
         shadow.appendChild(contestAButton);
         shadow.appendChild(contestBButton);

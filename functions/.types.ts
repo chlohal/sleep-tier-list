@@ -33,4 +33,36 @@ export type NetlifyEvent = {
     multiValueQueryStringParameters: { [name: string]: string[] | undefined }
     body: string | null
     isBase64Encoded: boolean
-  }
+}
+
+
+export function setKey(key: string, value: string): Promise<void> {
+    //@ts-ignore
+    var https = require("https");
+
+    console.log("promise");
+    console.log(Promise);
+
+    return new Promise((resolve, reject) => {
+        console.log("promising");
+        const options = {
+            hostname: "kvdb.io",
+            path: `/5ECkmP5qaKfsoTsesTETpZ/${encodeURIComponent(key)}`,
+            method: 'POST', //@ts-ignore
+            headers: { 'Content-Length': Buffer.byteLength(value) },
+        }
+
+        var req = https.request(options, function (res) {
+            resolve();
+        });
+
+        req.on("error", function (err) {
+            reject(err);
+        });
+
+        req.end(value);
+
+
+
+    });
+}
