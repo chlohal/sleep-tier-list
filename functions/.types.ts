@@ -40,11 +40,7 @@ export function setKey(key: string, value: string): Promise<void> {
     //@ts-ignore
     var https = require("https");
 
-    console.log("promise");
-    console.log(Promise);
-
     return new Promise((resolve, reject) => {
-        console.log("promising");
         const options = {
             hostname: "kvdb.io",
             path: `/5ECkmP5qaKfsoTsesTETpZ/${encodeURIComponent(key)}`,
