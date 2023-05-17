@@ -79,7 +79,9 @@ function normalizeSentence(sentence: SentenceFragment, parent?: SentencePart): v
     switch (sentence.type) {
         case "adjectival":
             const adjectives = sentence.children.filter(x => x.type == "adjective").length;
-            if (adjectives == 0) {
+            const real_objects = sentence.children.filter(x => x.type != "dummy_object" && TREATED_AS_OBJECT_IN_ADJECTIVAL.includes(x.type as GrammarType)).length;
+            
+            if (adjectives == 0 || real_objects > 0) {
                 sentence.children = sentence.children.filter(x=>x.type != "dummy_object");
             }
             if(sentence.children.length == 1 && sentence.children[0].type == "dummy_object") {
