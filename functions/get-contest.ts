@@ -9,7 +9,7 @@ exports.handler = function (event: NetlifyEvent, context: NetlifyContext, callba
 
     const contest = generate_new_competition(nth);
 
-    setKey(`competitions:${contest.id}:competitors`, `${contest.a.id},${contest.b.id}`)
+    setKey(`competitions:${event.queryStringParameters.self || "anon"}:${contest.id}:competitors`, `${contest.a.id},${contest.b.id}`)
         .then(() => {
             callback(null, {
                 statusCode: 200,

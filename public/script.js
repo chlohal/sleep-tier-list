@@ -2,10 +2,18 @@ window.addEventListener("load", onload);
 
 const QUEUE_SIZE = 10;
 
+const ID = localStorage.getItem("id") || makeId();
+
 let NUM_CONTESTS = 0;
 
 const contestQueue = [];
 let aButton, bButton, shadow, main;
+
+function makeId() {
+    let id = `${Date.now()}-${Math.random()}`;
+    localStorage.setItem("id", id);
+    return id;
+}
 
 function onload() {
     shadow = document.getElementById("shadow");
@@ -96,7 +104,7 @@ function startContest() {
 function loadContest(cb) {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "/api/get-contest?iter=" + (NUM_CONTESTS++));
+    xhr.open("GET", "/api/get-contest?iter=" + (NUM_CONTESTS++) + "&self=" + ID);
 
     xhr.onload = function() {
         cb(JSON.parse(xhr.responseText));
