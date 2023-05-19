@@ -1,6 +1,6 @@
 window.addEventListener("load", onload);
 
-const QUEUE_SIZE = 2;
+const QUEUE_SIZE = 10;
 
 let NUM_CONTESTS = 0;
 
